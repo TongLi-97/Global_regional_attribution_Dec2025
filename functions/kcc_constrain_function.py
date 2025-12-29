@@ -49,6 +49,8 @@ def H_matrix(his_data,his_fu_data):
 
 
 def kriging_mean_cov(obs_value, obs_cov, mod_value, mod_cov, H_matrix, mo_da_fu):
+    # print(len(mod_value))
+
 
     Sinv = np.linalg.pinv(H_matrix @ mod_cov @ H_matrix.T + obs_cov)
     Kriging_w = mod_cov @ H_matrix.T @ Sinv
@@ -68,7 +70,8 @@ def kriging_mean_cov(obs_value, obs_cov, mod_value, mod_cov, H_matrix, mo_da_fu)
         assign_coords(year1 = mo_da_fu['year'].values, year2 = mo_da_fu['year'].values)
 
     #### Visualizing some matrices
-    # heat_map_matrix(mod_cov, -0.1, 0.1)
+    # heat_map_matrix(obs_cov, -0.1, 0.1)
+    # plt.show()
 
     return x_post_xr, cov_post_xr
 
@@ -106,6 +109,7 @@ def constrain_reg(obs_be, runs_data, ln_data, mod_his, mo_da_fu):
     H_extract = H_matrix(obs_be,mo_best)
 
     print(obs_value)
+
 
     x_post, cov_post = \
         kriging_mean_cov(obs_value = obs_be.values,\
