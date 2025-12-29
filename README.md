@@ -1,4 +1,5 @@
-# Code for "Should we think of observationally constrained multi-decade climate projections as predictions?"
+# Code for "How close are IPCC regions to their 1.5° and 2°C equivalent warming limits?"
+
 Python code for the paper “Li, T., F. Zwiers, X. Zhang, Q. Sun: How close are IPCC regions to their 1.5° and 2°C equivalent warming limits?, submitted to Nature Climate Change"
 
 ## Author
