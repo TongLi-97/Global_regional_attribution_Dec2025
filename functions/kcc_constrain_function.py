@@ -151,6 +151,7 @@ def rebaseline_with_uncertainty(
     baseline = post_mean.sel(year=slice(ref_begin, ref_end))
     mu_baseline = baseline.mean(dim='year')
     post_mean_new = post_mean - mu_baseline
+    # print(post_mean_new)
     
     # Adjust covariance matrix
     baseline_cov = post_cov.sel(year1=slice(ref_begin, ref_end), 

@@ -121,6 +121,21 @@ def generate_global_regional_target_constraint_pairs(groups, global_abbrev='GLB'
     return pairs
 
 
+def generate_continent_regional_target_constraint_pairs(groups, continent_abbrev):
+    pairs = []
+    for i, (_, region_list) in enumerate(groups.items()):
+        cont = continent_abbrevs[i]
+
+        for region in region_list:
+            pairs.append({
+                "target_reg": region,
+                "constrain_used_reg": [region, cont]
+            })
+
+    return pairs
+
+
+
 def generate_continent_and_global_constraint_pairs(groups, continent_abbrevs, global_abbrev='GLB'):
     """
     Generate target-constrain pairs where each target region is constrained by

@@ -236,6 +236,7 @@ def region_warming_single_forcing(
 
         result["post_mean_5_95_smooth"] = post_mean_5_95_series(uncertainty_ref_period, ref_period, post_mean, post_cov).squeeze()
 
+
         result["obs_adjusted"] = obs_adjust(
             result["post_mean_5_95_smooth"].sel(quantile='mean'),
             obs_ar6.sel(region=obs_ar6.abbrevs == target_reg),
