@@ -12,7 +12,7 @@ from matplotlib.colors import LinearSegmentedColormap, Normalize
 from matplotlib import patches
 import matplotlib.patheffects as pe
 
-def plot_IMP_heatmap(data, groups, custom_cmap, title,  fig, ax, target=0.9, vmin=0.7, vmax=1.0, labels_height = 6.7, decimal = 2, coverage_rate = False):
+def plot_IMP_heatmap(data, groups, custom_cmap, title,  fig, ax, corlor_bar_name, target=0.9, vmin=0.7, vmax=1.0, labels_height = 6.7, decimal = 2, coverage_rate = False):
     """
     Plot coverage rate heatmap with best/second scheme highlights.
 
@@ -44,13 +44,13 @@ def plot_IMP_heatmap(data, groups, custom_cmap, title,  fig, ax, target=0.9, vmi
 
     # Axis ticks
     ax.set_xticks(np.arange(len(data.region)))
-    ax.set_xticklabels(data.region.values, rotation=90, fontsize=9)
+    ax.set_xticklabels(data.region.values, rotation=90, fontsize=10)
 
     ytick_labels = [f"{scheme} ({scheme_means.sel(scheme=scheme).item():.2f})"
                     for scheme in data.scheme.values]
     ax.set_yticks(np.arange(len(data.scheme)))
-    ax.set_yticklabels(ytick_labels, fontsize=12)
-    ax.set_ylabel("Schemes", fontsize=14)
+    ax.set_yticklabels(ytick_labels, fontsize=14)
+    ax.set_ylabel("Schemes", fontsize=16)
 
     # Draw vertical lines between groups
     group_counts = [len(groups[g]) for g in groups.keys()]
@@ -66,10 +66,13 @@ def plot_IMP_heatmap(data, groups, custom_cmap, title,  fig, ax, target=0.9, vmi
                 transform=ax.transData)
 
     # Colorbar
-    cbar = fig.colorbar(im, ax=ax, orientation='horizontal', pad=0.2, aspect=30, shrink=0.5)
+    cbar = fig.colorbar(im, ax=ax, orientation='horizontal', pad=0.23, aspect=30, shrink=0.5)
+    cbar.set_label(corlor_bar_name, fontsize=12)  # adjust fontsize as needed
+        
+
 
     # Title
-    ax.set_title(title, loc='left', fontsize=18, weight='bold')
+    ax.set_title(title, loc='left', fontsize=20, weight='bold')
 
     # Highlight best/second schemes
     best_counts = {scheme: 0 for scheme in data.scheme.values}
@@ -108,7 +111,7 @@ def plot_IMP_heatmap(data, groups, custom_cmap, title,  fig, ax, target=0.9, vmi
             for scheme in data.scheme.values
         ]
     ax.set_yticks(np.arange(len(data.scheme)))
-    ax.set_yticklabels(ytick_labels, fontsize=10.5)
+    ax.set_yticklabels(ytick_labels, fontsize=12)
 
     plt.tight_layout()
     return fig, ax

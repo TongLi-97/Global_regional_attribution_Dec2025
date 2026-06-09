@@ -77,19 +77,40 @@ def notnan_count(data):
     return(notnan_count, notnan_percent)
 
 
+# def contour_map(ax, proj=ccrs.Robinson()):
+#         # shapefile_path : str
+#         # Path to the AR6 region shapefile.
+#     shapefile_path = '/Users/tongli1997/Library/CloudStorage/OneDrive-UniversityofVictoria/Codes_run_on_local/Global_regional_attribution/IPCC-WGI-reference-regions-v4/IPCC-WGI-reference-regions-v4.shp'
+#     ax.set_global()
+#     ax.add_feature(cf.COASTLINE, lw=1.0)
+#     ax.set_extent([-180, 180, -90, 90], crs=ccrs.PlateCarree())
+#     ar6_shp = Reader(shapefile_path)
+#     fea_ar6 = cf.ShapelyFeature(ar6_shp.geometries(), proj, edgecolor='black', facecolor='none')
+#     ax.add_feature(fea_ar6, linewidth=1.0)
+#     # ax.xaxis.set_major_formatter(cticker.LongitudeFormatter())
+#     # ax.yaxis.set_major_formatter(cticker.LatitudeFormatter())
+#     ax.gridlines(linestyle='--', alpha=0.3, colors='gray')
+#     return ax
+
+
 def contour_map(ax, proj=ccrs.Robinson()):
-        # shapefile_path : str
-        # Path to the AR6 region shapefile.
-    shapefile_path = '/Users/tongli1997/Library/CloudStorage/OneDrive-UniversityofVictoria/Codes_run_on_local/Global_regional_attribution/IPCC-WGI-reference-regions-v4/IPCC-WGI-reference-regions-v4.shp'
     ax.set_global()
-    ax.add_feature(cf.COASTLINE, lw=1.0)
     ax.set_extent([-180, 180, -90, 90], crs=ccrs.PlateCarree())
-    ar6_shp = Reader(shapefile_path)
-    fea_ar6 = cf.ShapelyFeature(ar6_shp.geometries(), proj, edgecolor='black', facecolor='none')
-    ax.add_feature(fea_ar6, linewidth=1.0)
-    # ax.xaxis.set_major_formatter(cticker.LongitudeFormatter())
-    # ax.yaxis.set_major_formatter(cticker.LatitudeFormatter())
-    ax.gridlines(linestyle='--', alpha=0.3, colors='gray')
+
+    # base map features
+    ax.add_feature(cf.COASTLINE, lw=1.0)
+
+    # AR6 land regions from regionmask
+    ar6_land = regionmask.defined_regions.ar6.land
+
+    ar6_land.plot(
+        ax=ax,
+        add_label=False,
+        line_kws={"linewidth": 1.0}
+    )
+
+    ax.gridlines(linestyle="--", alpha=0.3, colors="gray")
+
     return ax
 
 def plot_tas_anomaly_maps(data, years, nan_counts, 
