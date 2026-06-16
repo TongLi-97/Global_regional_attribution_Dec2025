@@ -192,3 +192,28 @@ def modify_cmap(name='YlGn', start=0.1, end=0.9, gamma=0.8, white_strength=0.3):
         colors[i] = (1-blend_factor)*colors[i] + blend_factor*white
     
     return ListedColormap(colors)
+
+def plot_panel(ax, data, title, cmap, norm, decimals,
+               global_value=None, unit="°C", fontsize = 22, fontweight='bold'):
+    
+    ax.set_global()
+    norm0 = plot_ar6_region_data_on_ax_new(
+        ax, data, cmap=cmap, norm=norm, decimals=decimals
+    )
+
+    # ---- Add title ----
+    ax.set_title(title, fontsize=fontsize, fontweight=fontweight, loc='left')
+
+    # ---- Add the global value with a unit ----
+    if global_value is not None:
+        ax.text(
+            0.04, 0.5,
+            f"Global land: {global_value:.1f}{unit}",   # unit inserted here
+            transform=ax.transAxes,
+            fontsize=14,
+            fontweight='bold',
+            color='black',
+            bbox=dict(facecolor='white', alpha=0.6, edgecolor='none', pad=4)
+        )
+
+    return norm0
