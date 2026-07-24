@@ -215,6 +215,25 @@ Approximately **15 minutes** on a normal desktop computer.
 
 ---
 
+
+#### 1.0.1_IPM_reg_lsat_results.ipynb
+This notebook performs the imperfect model test (IPM) analysis for 46 AR6 regions and LSAT, using only the region+LSAT scheme. 
+
+##### Input
+- `./saved_data/0.1.HadCRUT5.Tas.anomalies.46AR6regions_7cont_1glob_175years_1850-2024.pkl`
+- `./saved_data/0.2.HadCRUT5.200runs.nonmasked.Tas.anomalies.46AR6regions_7cont_1glob_175years_1850-2024.pkl`
+- `./saved_data/0.3.Large_ensembles.320runs.nonmasked.Tas.anomalies.46AR6regions_7cont_1glob_251years_1850-2100.pkl`
+- `./saved_data/0.4.Smoothed_His-ALL.25mods.mean.nonmasked.Tas.anomalies.46AR6regions_7cont_1glob_171years_1850-2020.pkl`
+- `./saved_data/0.5.pseudo-model.15mod.run1-3.nonmasked.Tas.anomalies.46AR6regions_7cont_1glob_176years_1850-2025.pkl`
+
+##### Output
+- `./saved_data/1.0.1_IPM_Prior_posterier_Pseudo_warming_period_reg_lsat_47reg_2016-2025_ref1850-1900.pkl`
+
+##### Typical run time
+Approximately **5 minutes** on a normal desktop computer.
+
+---
+
 #### 1.1_IPM_Fig.4_compare_plot.ipynb
 This notebook computes three evaluation metrics—confidence ratio, uncertainty interval width, and uncertainty interval coverage for all AR6 regions, and generates Fig. 4 in the paper.
 
