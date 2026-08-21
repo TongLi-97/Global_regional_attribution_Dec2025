@@ -12,6 +12,10 @@ The analysis is implemented using Jupyter Notebooks and standard scientific Pyth
 
 The code is intended to support transparency and reproducibility of the results presented in the manuscript.
 
+### Implementation case
+
+The [implementation case](Implementation_Case.md) provides a worked example of the Bayesian attribution framework for greenhouse-gas (GHG) and other anthropogenic (OANT) forcing responses over northwestern North America. It describes the observational and prior vectors, covariance matrices, observation and selection operators, and posterior update used in the global-plus-regional constraint scheme.
+
 
 ## 1. System requirements
 
